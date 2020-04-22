@@ -1,10 +1,18 @@
 import java.util.*;
 
 public class GreedKnapsack {
-	private int max = 15;
-
 	public static void main(String[] args) {
-
+		Scanner sc = new Scanner(System.in);
+		int objectNumber = sc.nextInt();
+		int[] objectValues = new int[objectNumber];
+		for(int i = 0;i<objectNumber;i++) {
+			objectValues[i] = sc.nextInt();
+		}
+		int[] objectWeights = new int[objectNumber];
+		for(int i = 0;i<objectNumber;i++) {
+			objectWeights[i] = sc.nextInt();
+		}
+		int WeightMax = sc.nextInt();
 	}
 
 	/////////////QUICKSORT
@@ -49,7 +57,7 @@ public class GreedKnapsack {
 	}
 	//////////////////////
 
-	public static void knapsack(int[] profit, int[] weight){
+	public static void knapsack(int[] profit, int[] weight, int maxWeight){
 		Float[] relation = new Float[profit.length];
 		for(int i = 0; i<profit.length; i++) {
 			relation[i] = (float)profit[i]/weight[i];
@@ -63,12 +71,6 @@ public class GreedKnapsack {
 		//return relation;
 	}
 
-
-
-
-	public static void GreedyKnapSack(int objectNumber, int[] objectValues, int[] objectWeights, int maxWeight) {
-
-	}
 
 
 
