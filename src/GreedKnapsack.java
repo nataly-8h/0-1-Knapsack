@@ -59,12 +59,10 @@ public class GreedKnapsack {
 	}
 	//////////////////////
 
-	public static void knapsack(int[] profit, int[] weight, int maxWeight){
-		Float[] relation = new Float[profit.length];
-		for(int i = 0; i<profit.length; i++) {
-			relation[i] = (float)profit[i]/weight[i];
+	public static void knapsack(int[] values, int[] weight, int maxWeight){
 		Float[] relation = new Float[values.length];
 		for(int i = 0; i<values.length; i++) {
+			relation[i] = (float)values[i]/weight[i];
 			System.out.print(relation[i] + " ");
 		}
 		System.out.println();
