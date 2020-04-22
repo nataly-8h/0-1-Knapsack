@@ -13,6 +13,8 @@ public class GreedKnapsack {
 			objectWeights[i] = sc.nextInt();
 		}
 		int WeightMax = sc.nextInt();
+		
+		knapsack(objectValues, objectWeights, WeightMax);
 	}
 
 	/////////////QUICKSORT
@@ -61,6 +63,8 @@ public class GreedKnapsack {
 		Float[] relation = new Float[profit.length];
 		for(int i = 0; i<profit.length; i++) {
 			relation[i] = (float)profit[i]/weight[i];
+		Float[] relation = new Float[values.length];
+		for(int i = 0; i<values.length; i++) {
 			System.out.print(relation[i] + " ");
 		}
 		System.out.println();
@@ -70,8 +74,4 @@ public class GreedKnapsack {
 
 		//return relation;
 	}
-
-
-
-
 }

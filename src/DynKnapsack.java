@@ -15,11 +15,7 @@ public class DynKnapsack {
 		int WeightMax = sc.nextInt();
 		DynamicKnapSack(objectNumber, objectValues, objectWeights, WeightMax);
 	}
-	
-	
-	
-	
-	
+
 	public static void DynamicKnapSack(int objectNumber, int[] objectValues, int[] objectWeights, int maxWeight) {
 		int maxValue = 0;
 		ArrayList<Integer> objectsUsed = new ArrayList<Integer>();
