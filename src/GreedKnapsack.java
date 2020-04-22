@@ -1,18 +1,34 @@
 import java.util.*;
+import java.io.FileNotFoundException;
+import java.lang.IllegalArgumentException;
 
 public class GreedKnapsack {
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		int objectNumber = sc.nextInt();
-		int[] objectValues = new int[objectNumber];
-		for(int i = 0;i<objectNumber;i++) {
-			objectValues[i] = sc.nextInt();
+		try{ 
+			Scanner sc = new Scanner(System.in);
+			int objectNumber = sc.nextInt();
+			validObjectNumber(objectNumber);
+
+			int[] objectValues = new int[objectNumber];
+			validObjectValues(objectValues, objectNumber);
+			for(int i = 0;i<objectNumber;i++) {
+				objectValues[i] = sc.nextInt();
+			}
+
+			int[] objectWeights = new int[objectNumber];
+			for(int i = 0;i<objectNumber;i++) {
+				objectWeights[i] = sc.nextInt();
+			}
+
+			int WeightMax = sc.nextInt();
+	
+			System.out.println(objectNumber);
+			sc.close();
+
+		}catch(IllegalArgumentException ex){
+			System.out.println(ex.getMessage());
 		}
-		int[] objectWeights = new int[objectNumber];
-		for(int i = 0;i<objectNumber;i++) {
-			objectWeights[i] = sc.nextInt();
-		}
-		int WeightMax = sc.nextInt();
+
 	}
 
 	/////////////QUICKSORT
@@ -71,7 +87,16 @@ public class GreedKnapsack {
 		//return relation;
 	}
 
+	//Metodos de comprobación de input
+	public static void validObjectNumber(int a){
+		if(a <= 0)
+			throw new IllegalArgumentException("La cantidad de objetos debe ser mayor a 0");
+	}
 
+	public static void validObjectValues(int [] b, int a){
+		if(b.length != a)
+			throw new IllegalArgumentException("La cantidad de objetos no es la misma que la cantidad de valores dados");
+	}
 
 
 }
