@@ -51,14 +51,19 @@ public class DynKnapsack {
 		maxValue = dynamicMatrix[objectNumber-1][maxWeight];
 		System.out.println();
 		System.out.println(maxValue);
-		while(maxValue!=0) {
+		while(objectNumber-1>=0) {
+			if(objectNumber-2==-1) {
+				if(dynamicMatrix[objectNumber-1][maxWeight]!=0) {
+					objectsUsed.add(objectNumber);
+					break;
+				}
+			}
 			if(dynamicMatrix[objectNumber-1][maxWeight]>dynamicMatrix[objectNumber-2][maxWeight]) {
 				objectsUsed.add(objectNumber);
 				maxWeight-=objectWeights[objectNumber-1];
-				maxValue = dynamicMatrix[objectNumber-1][maxWeight];
+				objectNumber-=1;
 			} else {
 				objectNumber-=1;
-				maxValue = dynamicMatrix[objectNumber-1][maxWeight];
 			}
 		}
 		System.out.println();
