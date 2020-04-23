@@ -51,25 +51,46 @@ public class GreedKnapsack {
 
 	}
 
-	public static<E extends Comparable<E>> void imprimeArreglo(E[] valores) {
-		for(E valor:valores){
-			System.out.print(valor+"  ");
-		}
-		//System.out.println();
-	}
 	//////////////////////
 
 	public static void knapsack(int[] values, int[] weight, int maxWeight){
 		Float[] relation = new Float[values.length];
+		Hashtable<Float, Integer> datos = new Hashtable<Float, Integer>();
+		
 		for(int i = 0; i<values.length; i++) {
 			relation[i] = (float)values[i]/weight[i];
-			System.out.print(relation[i] + " ");
+			datos.put(relation[i], i);
+		}
+		quicksort(relation);
+		
+		//ejemplo que usé: 7 10 5 15 7 6 18 3 2 3 5 7 1 4 20 15
+		boolean[] used = new boolean[relation.length];
+		for(int i = 0; i<relation.length; i++) {
+			int tempWeight = weight[datos.get(relation[relation.length-1-i])];
+			maxWeight -= tempWeight;
+			if(maxWeight <= 0) {
+				break;	
+			}else {
+				//System.out.println("i: " + i + " iWe: " + datos.get(relation[relation.length-1-i]) + " temp: " + tempWeight + " max: " + maxWeight + " ");
+				used[datos.get(relation[relation.length-1-i])] = true;
+			}	
+		}
+
+		int maxValue = 0;
+		maxWeight = 0;
+		for(int i = 0; i<values.length; i++) {
+			if(used[i]) {
+				maxValue += values[i];
+				maxWeight += weight[i];
+			}
+		}
+		
+		System.out.println();
+		for(int i = 0; i<weight.length; i++) {
+			System.out.print(used[i] + " ");
 		}
 		System.out.println();
-		quicksort(relation);
-		imprimeArreglo(relation);
-
-
-		//return relation;
+		System.out.println("Maximum Value: " + maxValue + " Maximum Weight: " + maxWeight);
+		
 	}
 }
