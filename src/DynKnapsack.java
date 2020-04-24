@@ -41,6 +41,7 @@ public class DynKnapsack {
 				}
 			}
 		}
+		System.out.println("Matriz resultante: (n)*(w+1):");
 		for(int i = 0; i<objectNumber; i++) {
 			System.out.println();
 			for(int j=0; j<=maxWeight; j++) {
@@ -50,15 +51,17 @@ public class DynKnapsack {
 		}
 		maxValue = dynamicMatrix[objectNumber-1][maxWeight];
 		System.out.println();
+		System.out.println();
+		System.out.println("Máximo beneficio encontrado:");
 		System.out.println(maxValue);
 		while(objectNumber-1>=0) {
 			if(objectNumber-2==-1) {
 				if(dynamicMatrix[objectNumber-1][maxWeight]!=0) {
 					objectsUsed.add(objectNumber);
-					break;
+
 				}
-			}
-			if(dynamicMatrix[objectNumber-1][maxWeight]>dynamicMatrix[objectNumber-2][maxWeight]) {
+				break;
+			} else if(dynamicMatrix[objectNumber-1][maxWeight]>dynamicMatrix[objectNumber-2][maxWeight]) {
 				objectsUsed.add(objectNumber);
 				maxWeight-=objectWeights[objectNumber-1];
 				objectNumber-=1;
@@ -67,8 +70,10 @@ public class DynKnapsack {
 			}
 		}
 		System.out.println();
+		System.out.println("Objetos usados:");
 		for(int i = 0;i<objectsUsed.size();i++) {
-			System.out.println(objectsUsed.get(i));
+			System.out.print("Objeto #" + objectsUsed.get(i)+ ",");
+			System.out.print(" ");
 		}
 	}
 	
