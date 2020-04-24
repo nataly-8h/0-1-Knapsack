@@ -1,19 +1,36 @@
 import java.util.*;
+import java.lang.IllegalArgumentException;
 
 public class DynKnapsack {
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		int objectNumber = sc.nextInt();
-		int[] objectValues = new int[objectNumber];
-		for(int i = 0;i<objectNumber;i++) {
-			objectValues[i] = sc.nextInt();
+		try{
+			Scanner sc = new Scanner(System.in);
+			int objectNumber = sc.nextInt();
+			validObjectNumber(objectNumber);
+
+			int[] objectValues = new int[objectNumber];
+			for(int i = 0;i<objectNumber;i++) {
+				objectValues[i] = sc.nextInt();
+			}
+			validObjectList(objectValues, objectNumber);
+
+			int[] objectWeights = new int[objectNumber];
+			for(int i = 0;i<objectNumber;i++) {
+				objectWeights[i] = sc.nextInt();
+			}
+			validObjectList(objectValues, objectNumber);
+
+			int WeightMax = sc.nextInt();
+			isPositive(WeightMax);
+
+			DynamicKnapSack(objectNumber, objectValues, objectWeights, WeightMax);
+
+			sc.close();
+		}catch(IllegalArgumentException | InputMismatchException ex){
+			//Se imprime el mensaje de la excepcion
+			System.out.println(ex.getMessage()); 
 		}
-		int[] objectWeights = new int[objectNumber];
-		for(int i = 0;i<objectNumber;i++) {
-			objectWeights[i] = sc.nextInt();
-		}
-		int WeightMax = sc.nextInt();
-		DynamicKnapSack(objectNumber, objectValues, objectWeights, WeightMax);
+
 	}
 
 	public static void DynamicKnapSack(int objectNumber, int[] objectValues, int[] objectWeights, int maxWeight) {
@@ -52,7 +69,7 @@ public class DynKnapsack {
 		maxValue = dynamicMatrix[objectNumber-1][maxWeight];
 		System.out.println();
 		System.out.println();
-		System.out.println("Máximo beneficio encontrado:");
+		System.out.println("Maximo beneficio encontrado:");
 		System.out.println(maxValue);
 		while(objectNumber-1>=0) {
 			if(objectNumber-2==-1) {
@@ -77,6 +94,31 @@ public class DynKnapsack {
 		}
 	}
 	
-	
+	//Metodos de validacion
+
+	//Validar que los numeros de objetos sean aceptados
+	public static void validObjectNumber(int a){
+		if(a <= 0)
+			throw new IllegalArgumentException("El numero de objetos debe ser mayor a 0");
+	}
+
+	//Validar que sea positivo
+	public static void isPositive(int a){
+		if(a <= 0)
+			throw new IllegalArgumentException("Los datos deben ser positivos");
+	}
+
+	//Validar que la lista de objetos y pesos sea aceptada
+	public static void validObjectList(int[] b, int a){
+		if(b.length != a){
+			throw new IllegalArgumentException("La cantidad de objetos y pesos debe coincidir con el nÃºmero de objetos");
+		}
+
+		for(int i = 0; i < b.length; i++){
+			if(i <= 0){
+				throw new IllegalArgumentException("Los datos deben ser positivos");
+			}			
+		}
+	}
 	
 }
