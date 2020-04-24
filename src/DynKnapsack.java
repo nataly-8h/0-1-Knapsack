@@ -115,7 +115,7 @@ public class DynKnapsack {
 		}
 
 		for(int i = 0; i < b.length; i++){
-			if(i <= 0){
+			if(b[i] < 0){
 				throw new IllegalArgumentException("Los datos deben ser positivos");
 			}			
 		}
