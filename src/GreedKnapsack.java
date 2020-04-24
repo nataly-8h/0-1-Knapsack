@@ -30,7 +30,7 @@ public class GreedKnapsack {
 			//Se imprime el mensaje de la excepcion
 
 			if(ex.getMessage() == "null")
-				System.out.println("Los Strings no son aceptados");
+				System.out.println("Solo se aceptan numeros enteros");
 			else
 				System.out.println(ex.getMessage());
 		}
