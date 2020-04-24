@@ -71,6 +71,8 @@ public class GreedKnapsack {
 				finalValue += itemList[i].getValue();
 				res += itemList[i].getPosition() + " ";
 				peso += itemList[i].getWeight() + " ";
+			}else {
+				break;
 			}
 		}
 		
