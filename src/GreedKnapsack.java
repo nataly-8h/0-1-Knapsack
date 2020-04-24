@@ -5,38 +5,38 @@ public class GreedKnapsack {
 		try{
 			Scanner sc = new Scanner(System.in);
 			int objectNumber = sc.nextInt();
-			validObjectNumber(objectNumber);
+			DynKnapsack.validObjectNumber(objectNumber);
 
 			int[] objectValues = new int[objectNumber];
 			for(int i = 0;i<objectNumber;i++) {
 				objectValues[i] = sc.nextInt();
 			}
-			validObjectList(objectValues, objectNumber);
+			DynKnapsack.validObjectList(objectValues, objectNumber);
 
 			int[] objectWeights = new int[objectNumber];
 			for(int i = 0;i<objectNumber;i++) {
 				objectWeights[i] = sc.nextInt();
 			}
-			validObjectList(objectWeights, objectNumber);
-			
-			
+			DynKnapsack.validObjectList(objectWeights, objectNumber);
+
+
 			int WeightMax = sc.nextInt();
-			isPositive(WeightMax);
+			DynKnapsack.isPositive(WeightMax);
 
 			knapsack(objectValues, objectWeights, WeightMax);
 
 			sc.close();
 		}catch(IllegalArgumentException | InputMismatchException ex){
 			//Se imprime el mensaje de la excepcion
-			
+
 			if(ex.getMessage() == "null")
 				System.out.println("Solo se aceptan numeros enteros");
 			else
-				System.out.println(ex.getMessage()); 
+				System.out.println(ex.getMessage());
 		}
 
-		
-		
+
+
 	}
 
 	/////////////QUICKSORT
@@ -80,13 +80,13 @@ public class GreedKnapsack {
 		int finalValue = 0;
 		String res = "";
 		String peso = "";
-		
+
 		for(int i = 0; i < values.length; i++) {
 			itemList[i] = new Items(values[i], weight[i], i);
 		}
-		
+
 		quicksort(itemList);
-		
+
 		for(int i = 0; i < values.length; i++) {
 			if(maxWeight-itemList[i].getWeight()>=0) {
 				maxWeight -= itemList[i].getWeight();
@@ -97,7 +97,7 @@ public class GreedKnapsack {
 				break;
 			}
 		}
-		
+
 		if(finalValue==0) {
 			System.out.println("No se pudo agregar ning�n objeto a la mochila");
 		}else {
@@ -112,7 +112,7 @@ public class GreedKnapsack {
 class Items{
 	private int value, weight, position;
 	private float ratio;
-	
+
 	public Items(int value, int weight, int position) {
 		super();
 		this.value = value;
@@ -121,7 +121,6 @@ class Items{
 		this.ratio = (float) value/weight;
 	}
 
-	
 	public int getPosition() {
 		return position;
 	}
@@ -161,7 +160,7 @@ class Items{
 		for(int i = 0; i < b.length; i++){
 			if(b[i] < 0){
 				throw new IllegalArgumentException("Los datos deben ser positivos");
-			}			
+			}
 		}
-	}	
+	}
 }
