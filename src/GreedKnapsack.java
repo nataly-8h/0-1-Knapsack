@@ -69,7 +69,7 @@ public class GreedKnapsack {
 			if(maxWeight-itemList[i].getWeight()>=0) {
 				maxWeight -= itemList[i].getWeight();
 				finalValue += itemList[i].getValue();
-				res += itemList[i].getPosition() + " ";
+				res += itemList[i].getPosition()+1 + " ";
 				peso += itemList[i].getWeight() + " ";
 			}else {
 				break;
@@ -80,7 +80,7 @@ public class GreedKnapsack {
 			System.out.println("No se pudo agregar ningún objeto a la mochila");
 		}else {
 			System.out.println("El valor máximo es: " + finalValue);
-			System.out.println("Utilizando los objetos en al posición: " + res);
+			System.out.println("Utilizando los objetos #: " + res);
 			System.out.println("Con los pesos: " + peso);
 		}
 
