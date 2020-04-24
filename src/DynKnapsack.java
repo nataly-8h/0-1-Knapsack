@@ -18,7 +18,7 @@ public class DynKnapsack {
 			for(int i = 0;i<objectNumber;i++) {
 				objectWeights[i] = sc.nextInt();
 			}
-			validObjectList(objectValues, objectNumber);
+			validObjectList(objectWeights, objectNumber);
 
 			int WeightMax = sc.nextInt();
 			isPositive(WeightMax);
@@ -26,6 +26,7 @@ public class DynKnapsack {
 			DynamicKnapSack(objectNumber, objectValues, objectWeights, WeightMax);
 
 			sc.close();
+
 		}catch(IllegalArgumentException | InputMismatchException ex){
 			//Se imprime el mensaje de la excepcion
 			
