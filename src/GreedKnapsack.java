@@ -99,7 +99,6 @@ class Items{
 		this.ratio = (float) value/weight;
 	}
 
-	
 	public int getPosition() {
 		return position;
 	}
@@ -116,7 +115,4 @@ class Items{
 		return ratio;
 	}
 
-	public static void main(String[] args) {
-		
-	}
 }
