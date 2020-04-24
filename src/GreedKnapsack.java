@@ -5,23 +5,23 @@ public class GreedKnapsack {
 		try{
 			Scanner sc = new Scanner(System.in);
 			int objectNumber = sc.nextInt();
-			validObjectNumber(objectNumber);
+			DynKnapsack.validObjectNumber(objectNumber);
 
 			int[] objectValues = new int[objectNumber];
 			for(int i = 0;i<objectNumber;i++) {
 				objectValues[i] = sc.nextInt();
 			}
-			validObjectList(objectValues, objectNumber);
+			DynKnapsack.validObjectList(objectValues, objectNumber);
 
 			int[] objectWeights = new int[objectNumber];
 			for(int i = 0;i<objectNumber;i++) {
 				objectWeights[i] = sc.nextInt();
 			}
-			validObjectList(objectWeights, objectNumber);
+			DynKnapsack.validObjectList(objectWeights, objectNumber);
 
 
 			int WeightMax = sc.nextInt();
-			isPositive(WeightMax);
+			DynKnapsack.isPositive(WeightMax);
 
 			knapsack(objectValues, objectWeights, WeightMax);
 
