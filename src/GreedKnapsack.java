@@ -86,10 +86,17 @@ public class GreedKnapsack {
 		}
 
 		quicksort(itemList);
+		
+		for(int i = 0; i < values.length; i++) {
+			System.out.print(itemList[i].getRatio() + " ");
+		}
+
+		System.out.println();
 
 		for(int i = 0; i < values.length; i++) {
-			if(maxWeight-itemList[i].getWeight()>=0) {
-				maxWeight -= itemList[i].getWeight();
+			int tempWeight = maxWeight-itemList[i].getWeight();
+			if(tempWeight>=0) {
+				maxWeight = tempWeight;
 				finalValue += itemList[i].getValue();
 				res += itemList[i].getPosition()+1 + " ";
 				peso += itemList[i].getWeight() + " ";
