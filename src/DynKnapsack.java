@@ -18,7 +18,7 @@ public class DynKnapsack {
 			for(int i = 0;i<objectNumber;i++) {
 				objectWeights[i] = sc.nextInt();
 			}
-			validObjectList(objectValues, objectNumber);
+			validObjectList(objectWeights, objectNumber);
 
 			int WeightMax = sc.nextInt();
 			isPositive(WeightMax);
@@ -26,9 +26,14 @@ public class DynKnapsack {
 			DynamicKnapSack(objectNumber, objectValues, objectWeights, WeightMax);
 
 			sc.close();
+
 		}catch(IllegalArgumentException | InputMismatchException ex){
 			//Se imprime el mensaje de la excepcion
-			System.out.println(ex.getMessage()); 
+			
+			if(ex.getMessage() == "null")
+				System.out.println("Los Strings no son aceptados");
+			else
+				System.out.println(ex.getMessage()); 
 		}
 
 	}
@@ -104,7 +109,7 @@ public class DynKnapsack {
 
 	//Validar que sea positivo
 	public static void isPositive(int a){
-		if(a <= 0)
+		if(a < 0)
 			throw new IllegalArgumentException("Los datos deben ser positivos");
 	}
 
@@ -115,7 +120,7 @@ public class DynKnapsack {
 		}
 
 		for(int i = 0; i < b.length; i++){
-			if(i <= 0){
+			if(b[i] < 0){
 				throw new IllegalArgumentException("Los datos deben ser positivos");
 			}			
 		}

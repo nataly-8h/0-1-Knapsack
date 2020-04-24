@@ -2,19 +2,41 @@ import java.util.*;
 
 public class GreedKnapsack {
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		int objectNumber = sc.nextInt();
-		int[] objectValues = new int[objectNumber];
-		for(int i = 0;i<objectNumber;i++) {
-			objectValues[i] = sc.nextInt();
+		try{
+			Scanner sc = new Scanner(System.in);
+			int objectNumber = sc.nextInt();
+			validObjectNumber(objectNumber);
+
+			int[] objectValues = new int[objectNumber];
+			for(int i = 0;i<objectNumber;i++) {
+				objectValues[i] = sc.nextInt();
+			}
+			validObjectList(objectValues, objectNumber);
+
+			int[] objectWeights = new int[objectNumber];
+			for(int i = 0;i<objectNumber;i++) {
+				objectWeights[i] = sc.nextInt();
+			}
+			validObjectList(objectWeights, objectNumber);
+
+
+			int WeightMax = sc.nextInt();
+			isPositive(WeightMax);
+
+			knapsack(objectValues, objectWeights, WeightMax);
+
+			sc.close();
+		}catch(IllegalArgumentException | InputMismatchException ex){
+			//Se imprime el mensaje de la excepcion
+
+			if(ex.getMessage() == "null")
+				System.out.println("Los Strings no son aceptados");
+			else
+				System.out.println(ex.getMessage());
 		}
-		int[] objectWeights = new int[objectNumber];
-		for(int i = 0;i<objectNumber;i++) {
-			objectWeights[i] = sc.nextInt();
-		}
-		int WeightMax = sc.nextInt();
-		
-		knapsack(objectValues, objectWeights, WeightMax);
+
+
+
 	}
 
 	/////////////QUICKSORT
@@ -58,13 +80,13 @@ public class GreedKnapsack {
 		int finalValue = 0;
 		String res = "";
 		String peso = "";
-		
+
 		for(int i = 0; i < values.length; i++) {
 			itemList[i] = new Items(values[i], weight[i], i);
 		}
-		
+
 		quicksort(itemList);
-		
+
 		for(int i = 0; i < values.length; i++) {
 			if(maxWeight-itemList[i].getWeight()>=0) {
 				maxWeight -= itemList[i].getWeight();
@@ -75,11 +97,11 @@ public class GreedKnapsack {
 				break;
 			}
 		}
-		
+
 		if(finalValue==0) {
-			System.out.println("No se pudo agregar ningún objeto a la mochila");
+			System.out.println("No se pudo agregar ningï¿½n objeto a la mochila");
 		}else {
-			System.out.println("El valor máximo es: " + finalValue);
+			System.out.println("El valor mï¿½ximo es: " + finalValue);
 			System.out.println("Utilizando los objetos #: " + res);
 			System.out.println("Con los pesos: " + peso);
 		}
@@ -90,7 +112,7 @@ public class GreedKnapsack {
 class Items{
 	private int value, weight, position;
 	private float ratio;
-	
+
 	public Items(int value, int weight, int position) {
 		super();
 		this.value = value;
@@ -115,4 +137,30 @@ class Items{
 		return ratio;
 	}
 
+	//Metodos de validacion
+
+	//Validar que los numeros de objetos sean aceptados
+	public static void validObjectNumber(int a){
+		if(a <= 0)
+			throw new IllegalArgumentException("El numero de objetos debe ser mayor a 0");
+	}
+
+	//Validar que sea positivo
+	public static void isPositive(int a){
+		if(a < 0)
+			throw new IllegalArgumentException("Los datos deben ser positivos");
+	}
+
+	//Validar que la lista de objetos y pesos sea aceptada
+	public static void validObjectList(int[] b, int a){
+		if(b.length != a){
+			throw new IllegalArgumentException("La cantidad de objetos y pesos debe coincidir con el nÃºmero de objetos");
+		}
+
+		for(int i = 0; i < b.length; i++){
+			if(b[i] < 0){
+				throw new IllegalArgumentException("Los datos deben ser positivos");
+			}
+		}
+	}
 }
