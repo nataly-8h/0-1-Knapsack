@@ -18,12 +18,12 @@ public class GreedKnapsack {
 	}
 
 	/////////////QUICKSORT
-	public static<E extends Comparable<E>> void quicksort(E[] datos) {
-		swap(datos, 0, (int) Math.random()*datos.length);
-		quicksort(datos, 0,datos.length-1);
+	public static<E extends Comparable<E>> void quicksort(Items[] itemList) {
+		swap(itemList, 0, (int) Math.random()*itemList.length);
+		quicksort(itemList, 0,itemList.length-1);
 	}
 
-	private static<E extends Comparable<E>> void quicksort(E[] datos, int left, int right) {
+	private static<E extends Comparable<E>> void quicksort(Items[] datos, int left, int right) {
 		if(left<right) {
 			int p = particionar(datos,left,right);
 			quicksort(datos,left, p-1);
@@ -31,10 +31,10 @@ public class GreedKnapsack {
 		}
 	}
 
-	private static<E extends Comparable<E>> int particionar(E[] datos, int left, int right) {
+	private static<E extends Comparable<E>> int particionar(Items[] datos, int left, int right) {
 		int i = left + 1;
 		for(int j = left+1; j<=right; j++) {
-			if(datos[j].compareTo(datos[left])<0) {
+			if(datos[j].getRatio()>(datos[left].getRatio())) {
 				swap(datos, i, j);
 				i++;
 			}
@@ -44,53 +44,77 @@ public class GreedKnapsack {
 		return i-1;
 	}
 
-	private static<E extends Comparable<E>> void swap(E[] valores, int i, int j) {
-		E aux = valores[j];
-		valores[j]=valores[i];
-		valores[i]=aux;
+	private static<E extends Comparable<E>> void swap(Items[] itemList, int i, int j) {
+		Items aux = itemList[j];
+		itemList[j]=itemList[i];
+		itemList[i]=aux;
 
 	}
 
 	//////////////////////
 
 	public static void knapsack(int[] values, int[] weight, int maxWeight){
-		Float[] relation = new Float[values.length];
-		Hashtable<Float, Integer> datos = new Hashtable<Float, Integer>();
+		Items[] itemList = new Items[values.length];
+		int finalValue = 0;
+		String res = "";
+		String peso = "";
 		
-		for(int i = 0; i<values.length; i++) {
-			relation[i] = (float)values[i]/weight[i];
-			datos.put(relation[i], i);
+		for(int i = 0; i < values.length; i++) {
+			itemList[i] = new Items(values[i], weight[i], i);
 		}
-		quicksort(relation);
 		
-		//ejemplo que usé: 7 10 5 15 7 6 18 3 2 3 5 7 1 4 20 15
-		boolean[] used = new boolean[relation.length];
-		for(int i = 0; i<relation.length; i++) {
-			int tempWeight = weight[datos.get(relation[relation.length-1-i])];
-			maxWeight -= tempWeight;
-			if(maxWeight <= 0) {
-				break;	
-			}else {
-				//System.out.println("i: " + i + " iWe: " + datos.get(relation[relation.length-1-i]) + " temp: " + tempWeight + " max: " + maxWeight + " ");
-				used[datos.get(relation[relation.length-1-i])] = true;
-			}	
-		}
-
-		int maxValue = 0;
-		maxWeight = 0;
-		for(int i = 0; i<values.length; i++) {
-			if(used[i]) {
-				maxValue += values[i];
-				maxWeight += weight[i];
+		quicksort(itemList);
+		
+		for(int i = 0; i < values.length; i++) {
+			if(maxWeight-itemList[i].getWeight()>=0) {
+				maxWeight -= itemList[i].getWeight();
+				finalValue += itemList[i].getValue();
+				res += itemList[i].getPosition() + " ";
+				peso += itemList[i].getWeight() + " ";
 			}
 		}
 		
-		System.out.println();
-		for(int i = 0; i<weight.length; i++) {
-			System.out.print(used[i] + " ");
+		if(finalValue==0) {
+			System.out.println("No se pudo agregar ningún objeto a la mochila");
+		}else {
+			System.out.println("El valor máximo es: " + finalValue);
+			System.out.println("Utilizando los objetos en al posición: " + res);
+			System.out.println("Con los pesos: " + peso);
 		}
-		System.out.println();
-		System.out.println("Maximum Value: " + maxValue + " Maximum Weight: " + maxWeight);
+
+	}
+}
+
+class Items{
+	private int value, weight, position;
+	private float ratio;
+	
+	public Items(int value, int weight, int position) {
+		super();
+		this.value = value;
+		this.weight = weight;
+		this.position = position;
+		this.ratio = (float) value/weight;
+	}
+
+	
+	public int getPosition() {
+		return position;
+	}
+
+	public int getValue() {
+		return value;
+	}
+
+	public int getWeight() {
+		return weight;
+	}
+
+	public float getRatio() {
+		return ratio;
+	}
+
+	public static void main(String[] args) {
 		
 	}
 }
