@@ -30,7 +30,7 @@ public class GreedKnapsack {
 			//Se imprime el mensaje de la excepcion
 
 			if(ex.getMessage() == "null")
-				System.out.println("Solo se aceptan numeros enteros");
+				System.out.println("Los Strings no son aceptados");
 			else
 				System.out.println(ex.getMessage());
 		}
@@ -86,29 +86,21 @@ public class GreedKnapsack {
 		}
 
 		quicksort(itemList);
-		
-		for(int i = 0; i < values.length; i++) {
-			System.out.print(itemList[i].getRatio() + " ");
-		}
-
-		System.out.println();
 
 		for(int i = 0; i < values.length; i++) {
-			int tempWeight = maxWeight-itemList[i].getWeight();
+			int tempWeight =  maxWeight-itemList[i].getWeight() + 1;
 			if(tempWeight>=0) {
 				maxWeight = tempWeight;
 				finalValue += itemList[i].getValue();
 				res += itemList[i].getPosition()+1 + " ";
 				peso += itemList[i].getWeight() + " ";
-			}else {
-				break;
 			}
 		}
 
 		if(finalValue==0) {
 			System.out.println("No se pudo agregar ningï¿½n objeto a la mochila");
 		}else {
-			System.out.println("El valor mï¿½ximo es: " + finalValue);
+			System.out.println("El valor máximo es: " + finalValue);
 			System.out.println("Utilizando los objetos #: " + res);
 			System.out.println("Con los pesos: " + peso);
 		}
