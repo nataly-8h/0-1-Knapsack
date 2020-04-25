@@ -76,6 +76,7 @@ public class GreedKnapsack {
 	//////////////////////
 
 	public static void knapsack(int[] values, int[] weight, int maxWeight){
+		long startTime = System.nanoTime();
 		Items[] itemList = new Items[values.length];
 		int finalValue = 0;
 		String res = "";
@@ -104,6 +105,11 @@ public class GreedKnapsack {
 			System.out.println("El valor m�ximo es: " + finalValue);
 			System.out.println("Utilizando los objetos #: " + res);
 			System.out.println("Con los pesos: " + peso);
+			long endTime = System.nanoTime();
+			long timeElapsed = endTime - startTime;
+			System.out.println("Execution time in nanoseconds  : " + timeElapsed);
+			System.out.println("Execution time in milliseconds : " + timeElapsed / 1000000);
+					
 		}
 
 	}
