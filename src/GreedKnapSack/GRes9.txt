@@ -1,0 +1,5 @@
+El valor máximo es: 4
+Utilizando los objetos #: 1 
+Con los pesos: 5 
+Execution time in nanoseconds  : 30419600
+Execution time in milliseconds : 30
