@@ -39,6 +39,7 @@ public class DynKnapsack {
 	}
 
 	public static void DynamicKnapSack(int objectNumber, int[] objectValues, int[] objectWeights, int maxWeight) {
+		long startTime = System.nanoTime();
 		int maxValue = 0;
 		ArrayList<Integer> objectsUsed = new ArrayList<Integer>();
 		int[][] dynamicMatrix = new int[objectNumber][maxWeight+1];
@@ -97,6 +98,10 @@ public class DynKnapsack {
 			System.out.print("Objeto #" + objectsUsed.get(i)+ ",");
 			System.out.print(" ");
 		}
+		long endTime = System.nanoTime();
+		long timeElapsed = endTime - startTime;
+		System.out.println("Execution time in nanoseconds  : " + timeElapsed);
+		System.out.println("Execution time in milliseconds : " + timeElapsed / 1000000);
 	}
 	
 	//Metodos de validacion
