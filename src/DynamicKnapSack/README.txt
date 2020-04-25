@@ -1,7 +1,8 @@
 En esta carpeta se encuentra el source code del algoritmo Dynamic de KnapSack
 Al igual que la carpeta con los resultados de cada experimento.
 Los casos de prueba usados están nombrados como DTest#
+
 Donde # es el número del caso de prueba.
 Mientras que el source code es DynamicKnapsack.java
 
-En la carpeta de resultados están los respaldos de la experimentación
+Los resultados están reportados como GTestResult0#, dónde # es el número de la prueba que fue ejecutada.
