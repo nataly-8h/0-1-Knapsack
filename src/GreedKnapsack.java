@@ -30,7 +30,7 @@ public class GreedKnapsack {
 			//Se imprime el mensaje de la excepcion
 
 			if(ex.getMessage() == "null")
-				System.out.println("Solo se aceptan numeros enteros");
+				System.out.println("Los Strings no son aceptados");
 			else
 				System.out.println(ex.getMessage());
 		}
@@ -76,6 +76,7 @@ public class GreedKnapsack {
 	//////////////////////
 
 	public static void knapsack(int[] values, int[] weight, int maxWeight){
+		long startTime = System.nanoTime();
 		Items[] itemList = new Items[values.length];
 		int finalValue = 0;
 		String res = "";
@@ -88,22 +89,26 @@ public class GreedKnapsack {
 		quicksort(itemList);
 
 		for(int i = 0; i < values.length; i++) {
-			if(maxWeight-itemList[i].getWeight()>=0) {
-				maxWeight -= itemList[i].getWeight();
+			int tempWeight =  maxWeight-itemList[i].getWeight() + 1;
+			if(tempWeight>=0) {
+				maxWeight = tempWeight;
 				finalValue += itemList[i].getValue();
 				res += itemList[i].getPosition()+1 + " ";
 				peso += itemList[i].getWeight() + " ";
-			}else {
-				break;
 			}
 		}
 
 		if(finalValue==0) {
 			System.out.println("No se pudo agregar ningï¿½n objeto a la mochila");
 		}else {
-			System.out.println("El valor mï¿½ximo es: " + finalValue);
+			System.out.println("El valor máximo es: " + finalValue);
 			System.out.println("Utilizando los objetos #: " + res);
 			System.out.println("Con los pesos: " + peso);
+			long endTime = System.nanoTime();
+			long timeElapsed = endTime - startTime;
+			System.out.println("Execution time in nanoseconds  : " + timeElapsed);
+			System.out.println("Execution time in milliseconds : " + timeElapsed / 1000000);
+					
 		}
 
 	}
