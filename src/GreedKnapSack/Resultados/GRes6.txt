@@ -1,0 +1,5 @@
+El valor máximo es: 76318
+Utilizando los objetos #: 2217 5622 5651 6962 7183 3168 2535 5876 8151 49 4308 5918 1221 6611 1790 7952 4986 8335 6362 
+Con los pesos: 714 695 704 734 748 704 744 717 748 779 705 780 790 778 763 727 776 772 739 
+Execution time in nanoseconds  : 42576900
+Execution time in milliseconds : 42
