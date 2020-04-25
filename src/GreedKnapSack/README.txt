@@ -5,4 +5,4 @@ Donde # es el número del caso de prueba.
 Mientras que el source code es GreedKnapsack.java
 
 
-Los resultados están reportados como DTestResult#, dónde # es el número de la prueba que fue ejecutada.
+Los resultados están reportados como GTestResult#, dónde # es el número de la prueba que fue ejecutada.
